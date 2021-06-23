@@ -19,10 +19,9 @@
 		{% endblock %}
 	</head>
 	<body>
-		header
-		<br>
-		menu
-		<br>
+        {% include 'shared/_header.html.twig' %}
+        {% include 'shared/_menu.html.twig' %}
+
 		<div class="container">
             {% block body %}{% endblock %}
 		</div>
