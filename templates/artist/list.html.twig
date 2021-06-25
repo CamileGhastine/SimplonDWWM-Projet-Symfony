@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArtistController!
+{% endblock %}
+
+{% block body %}
+	<div class="text-center">
+		{% for i in 1..5 %}
+			<a href="#" role="button" class="btn btn-outline-primary mx-1">Categorie
+				{{ i }}</a>
+		{% endfor %}
+	</div>
+
+	<div class="row my-5">
+		{% for i in 1..20 %}
+			<div class="col-4">
+				<div class="card border-primary mb-3">
+					<div class="card-header text-end"><span class="badge rounded-pill bg-primary">Concert</span></div>
+					<div class="card-body">
+						<h4 class="card-title">artiste n° {{ i }}</h4>
+						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nam? ...</p>
+                        <p><a href="#">Découvrir l'artiste</a></p>
+                    </div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
