@@ -14,7 +14,6 @@ class ArtistController extends AbstractController
      */
     public function list(CategoryRepository $categoryRepository): Response
     {
-        // $categories = ['Mélodique', 'Industrielle', 'Groovy', 'Deep', 'Détroit'];
         $categories = $categoryRepository->findAll();
 
         return $this->render('artist/list.html.twig', [

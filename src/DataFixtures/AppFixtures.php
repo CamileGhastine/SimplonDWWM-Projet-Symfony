@@ -10,9 +10,11 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i <= 5; $i++) {
+        $categoryNames = ['Mélodique', 'Industrielle', 'Groovy', 'Deep', 'Détroit'];
+
+        for ($i = 0; $i <= 4; $i++) {
             $category = new Category();
-            $category->setName('categorie n° '. $i);
+            $category->setName($categoryNames[$i]);
             $manager->persist($category);
         }
 
