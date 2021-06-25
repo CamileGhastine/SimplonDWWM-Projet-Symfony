@@ -13,13 +13,13 @@
 	</div>
 
 	<div class="row my-5">
-		{% for i in 1..20 %}
+		{% for artist in artists %}
 			<div class="col-4">
 				<div class="card border-primary mb-3">
 					<div class="card-header text-end"><span class="badge rounded-pill bg-primary">Concert</span></div>
 					<div class="card-body">
-						<h4 class="card-title">artiste n° {{ i }}</h4>
-						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nam? ...</p>
+						<h4 class="card-title">{{ artist.name }}</h4>
+						<p class="card-text">{{ artist.description | slice(1, 100) }} ...</p>
                         <p><a href="#">Découvrir l'artiste</a></p>
                     </div>
 				</div>
