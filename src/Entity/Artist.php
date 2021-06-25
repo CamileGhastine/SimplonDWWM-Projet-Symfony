@@ -37,6 +37,8 @@ class Artist
      */
     private $category;
 
+    private $color;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +88,26 @@ class Artist
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of color
+     */ 
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set the value of color
+     *
+     * @return  self
+     */ 
+    public function setColor($color)
+    {
+        $this->color = $color;
 
         return $this;
     }

@@ -7,16 +7,15 @@
 
 	<div class="text-center">
 		{% for category in categories %}
-		{% dump category %}
-			<a href="#" role="button" class="btn btn-outline-primary mx-1">{{ category.name }}</a>
+			<a href="#" role="button" class="btn btn-outline-{{ category.color }} mx-1">{{ category.name }}</a>
 		{% endfor %}
 	</div>
 
 	<div class="row my-5">
 		{% for artist in artists %}
 			<div class="col-4">
-				<div class="card border-primary mb-3">
-					<div class="card-header text-end"><span class="badge rounded-pill bg-primary">{{ artist.concert ? 'Concert' : 'Music de rue' }}</span></div>
+				<div class="card border-{{ artist.color }} mb-3">
+					<div class="card-header text-end"><span class="badge rounded-pill bg-{{ artist.concert ? 'secondary' : 'primary' }}">{{ artist.concert ? 'Concert' : 'Music de rue' }}</span></div>
 					<div class="card-body">
 						<h4 class="card-title">{{ artist.name }}</h4>
 						<p class="card-text">{{ artist.description | slice(1, 100) }} ...</p>

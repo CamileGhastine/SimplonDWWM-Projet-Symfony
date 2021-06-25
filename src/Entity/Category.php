@@ -24,6 +24,8 @@ class Category
      */
     private $name;
 
+    private $color;
+
     /**
      * @ORM\OneToMany(targetEntity=Artist::class, mappedBy="category")
      */
@@ -77,6 +79,26 @@ class Category
                 $artist->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * Get the value of color
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set the value of color
+     *
+     * @return  self
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
 
         return $this;
     }

@@ -15,8 +15,27 @@ class ArtistController extends AbstractController
      */
     public function list(CategoryRepository $categoryRepository, ArtistRepository $artistRepository): Response
     {
+        $categoryColors = [
+            'Mélodique' => 'primary',
+            'Industrielle' => 'secondary',
+            'Groovy' => 'success',
+            'Deep' => 'info',
+            'Détroit'=> 'warning'
+        ];
+
         $categories = $categoryRepository->findAll();
+
+        foreach ($categories as $category) {
+            $category->setColor($categoryColors[$category->getName()]);
+        }
+
         $artists = $artistRepository->findAll();
+
+        foreach ($artists as $artist) {
+            $categoryName = $artist->getCategory() ? $artist->getCategory()->getName() : null;
+            $color = $categoryName ? $categoryColors[$categoryName] : 'dark';
+            $artist->setColor($color);
+        }
 
         return $this->render('artist/list.html.twig', [
             'categories' => $categories,
