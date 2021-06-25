@@ -4,10 +4,11 @@
 {% endblock %}
 
 {% block body %}
+
 	<div class="text-center">
-		{% for i in 1..5 %}
-			<a href="#" role="button" class="btn btn-outline-primary mx-1">Categorie
-				{{ i }}</a>
+		{% for category in categories %}
+		{% dump category %}
+			<a href="#" role="button" class="btn btn-outline-primary mx-1">{{ category.name }}</a>
 		{% endfor %}
 	</div>
 
