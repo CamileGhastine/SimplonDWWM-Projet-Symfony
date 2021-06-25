@@ -16,7 +16,7 @@
 		{% for artist in artists %}
 			<div class="col-4">
 				<div class="card border-primary mb-3">
-					<div class="card-header text-end"><span class="badge rounded-pill bg-primary">Concert</span></div>
+					<div class="card-header text-end"><span class="badge rounded-pill bg-primary">{{ artist.concert ? 'Concert' : 'Music de rue' }}</span></div>
 					<div class="card-body">
 						<h4 class="card-title">{{ artist.name }}</h4>
 						<p class="card-text">{{ artist.description | slice(1, 100) }} ...</p>

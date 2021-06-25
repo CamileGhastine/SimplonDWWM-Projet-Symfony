@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Artist;
+use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -13,11 +14,12 @@ class ArtistFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        for ($i = 1; $i < 9; $i++) {
+        for ($i = 1; $i < 4; $i++) {
             $artist = new Artist();
 
             $artist->setName('DJ ' . $faker->firstname())
-                ->setDescription($faker->paragraphs(10, true));
+                ->setDescription($faker->paragraphs(10, true))
+                ;
 
             $manager->persist($artist);
         }
