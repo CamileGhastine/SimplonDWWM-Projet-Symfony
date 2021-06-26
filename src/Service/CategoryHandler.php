@@ -2,18 +2,10 @@
 
 namespace App\Service;
 
-use App\Repository\CategoryRepository;
 
 class CategoryHandler
 {
-    private $categoryRepository;
-
-    public function __construct(CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
-    public function handle(array $categories)
+    public function colorize(array $categories)
     {
         $categoryColors = [
             'Mélodique' => 'primary',
