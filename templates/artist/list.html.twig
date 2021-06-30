@@ -7,7 +7,7 @@
 
 	<div class="text-center">
 		{% for category in categories %}
-			<a href="#" role="button" class="btn btn-outline-{{ category.color }} mx-1">{{ category.name }}</a>
+			<a href="{{ path('artist_listByCategory', {'id': category.id }) }}" role="button" class="btn btn-outline-{{ category.color }} mx-1">{{ category.name }}</a>
 		{% endfor %}
 	</div>
 
