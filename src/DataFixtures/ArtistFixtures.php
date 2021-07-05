@@ -2,28 +2,44 @@
 
 namespace App\DataFixtures;
 
+use Faker\Factory;
 use App\Entity\Artist;
 use App\Entity\Category;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class ArtistFixtures extends Fixture
+class ArtistFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
 
-        for ($i = 1; $i < 4; $i++) {
-            $artist = new Artist();
+        $concert = 1;
 
-            $artist->setName('DJ ' . $faker->firstname())
-                ->setDescription($faker->paragraphs(10, true))
-                ;
+        for ($j = 0; $j < 20; $j++) {
+
+            $artist = new Artist();
+            $artist->setName($faker->firstname())
+                ->setDescription($faker->paragraphs(10, true));
+            if (rand(0, 5) > 1) {
+                $artist->setCategory($this->getReference("category" . rand(0, 4)));
+            }
+            if ($concert <= 9 && rand(0, 5) <= 2) {
+                $artist->setConcert($concert);
+                $concert++;
+            }
 
             $manager->persist($artist);
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            CategoryFixtures::class,
+        ];
     }
 }

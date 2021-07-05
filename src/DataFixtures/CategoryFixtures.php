@@ -15,27 +15,13 @@ class CategoryFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
         $categoryNames = ['Mélodique', 'Industrielle', 'Groovy', 'Deep', 'Détroit'];
-        $concert = 1;
 
         for ($i = 0; $i <= 4; $i++) {
             $category = new Category();
             $category->setName($categoryNames[$i]);
             $manager->persist($category);
 
-            for ($j = 0; $j < rand(3, 8); $j++) {
-
-                $artist = new Artist();
-                $artist->setName($faker->firstname())
-                    ->setDescription($faker->paragraphs(10, true))
-                    ->setCategory($category);
-                if ($concert <= 9 && rand(0, 5) <=2) {
-                    $artist->setConcert($concert);
-                    $concert++;
-                }
-
-
-                $manager->persist($artist);
-            }
+            $this->addReference("category" . $i, $category);
         }
 
         $manager->flush();
