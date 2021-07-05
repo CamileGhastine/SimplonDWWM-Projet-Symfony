@@ -20,7 +20,7 @@ class ArtistFixtures extends Fixture implements DependentFixtureInterface
         for ($j = 0; $j < 20; $j++) {
 
             $artist = new Artist();
-            $artist->setName($faker->firstname())
+            $artist->setName('DJ ' . $faker->firstname())
                 ->setDescription($faker->paragraphs(10, true));
             if (rand(0, 5) > 1) {
                 $artist->setCategory($this->getReference("category" . rand(0, 4)));

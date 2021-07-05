@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello ArtistController!
+{% endblock %}
+
+{% block body %}
+	<div class="my-5 row">
+		<div class="card card border-success mx-3 my-3 col-12">
+			<div class="card-body">
+				<h4 class="card-title">{{ artist.name }}</h4>
+				<p class="card-text">{{ artist.description }}</p>
+			</div>
+		</div>
+		<a href="{{ path('artist_list') }}" class="btn btn-sm btn-primary col-4 offset-4">Retour à la liste des artistes</a>
+	</div>
+{% endblock %}

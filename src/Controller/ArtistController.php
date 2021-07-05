@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Artist;
 use App\Entity\Category;
+use App\Service\CategoryHandler;
 use App\Repository\ArtistRepository;
 use App\Repository\CategoryRepository;
-use App\Service\CategoryHandler;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArtistController extends AbstractController
 {
@@ -26,6 +27,16 @@ class ArtistController extends AbstractController
         return $this->render('artist/list.html.twig', [
             'categories' => $categoryHandler->colorize($categoryRepository->findAll()),
             'artists' => $artists
+        ]);
+    }
+
+    /**
+     * @Route("/artist/{id<[0-9]+>}", name="artist_show")
+     */
+    public function show(Artist $artist): Response
+    {
+        return $this->render('artist/show.html.twig', [
+            'artist' => $artist
         ]);
     }
 }

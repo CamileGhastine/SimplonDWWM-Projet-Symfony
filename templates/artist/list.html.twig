@@ -19,7 +19,7 @@
 					<div class="card-body">
 						<h4 class="card-title">{{ artist.name }}</h4>
 						<p class="card-text">{{ artist.description | slice(1, 100) }} ...</p>
-                        <p><a href="#">Découvrir l'artiste</a></p>
+                        <p><a href="{{ path('artist_show', {'id' : artist.id }) }}">Découvrir l'artiste</a></p>
                     </div>
 				</div>
 			</div>
