@@ -15,4 +15,12 @@ class TechnoController extends AbstractController
     {
         return $this->render('techno/home.html.twig');
     }
+
+    /**
+     * @Route("/book", name="techno_book")
+     */
+    public function book(): Response
+    {
+        return $this->render('techno/home.html.twig');
+    }
 }

@@ -17,7 +17,7 @@ class ArtistFixtures extends Fixture implements DependentFixtureInterface
 
         $concert = 1;
 
-        for ($j = 0; $j < 20; $j++) {
+        for ($j = 0; $j < 30; $j++) {
 
             $artist = new Artist();
             $artist->setName('DJ ' . $faker->firstname())

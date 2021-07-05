@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArtistController!
+{% endblock %}
+
+{% block body %}
+
+	<table class="table table-hover my-5">
+		<thead hidden>
+			<tr>
+				<th scope="col">Date</th>
+				<th scope="col">heure</th>
+				<th scope="col">Artiste</th>
+				<th scope="col">Réservez</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for artist in artists %}
+				<tr class="border-light border-1">
+					<td>{{ artist.date }}</td>
+					<td>{{ artist.time }}</td>
+					<td>{{ artist.name }}</td>
+					<td class="text-center">
+						<a href="{{ path('techno_book') }}" role="button" class="btn btn-primary">Réservez une place</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}
