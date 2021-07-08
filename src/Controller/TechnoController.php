@@ -13,7 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TechnoController extends AbstractController
-{   
+{
     /**
      * home
      * @Route("/", name="techno_home")
@@ -47,15 +47,16 @@ class TechnoController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
+            $bookingHandler->setConcerts($booking, $form);
+        }
 
-            $bookingHandler->setConcerts($booking);
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $em->persist($booking);
             $em->flush();
 
             $this->addFlash('book', 'Votre réservation a bien été prise en compte.');
-            
             return $this->render('techno/home.html.twig');
         }
 

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\BookingRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BookingRepository::class)
@@ -30,6 +31,10 @@ class Booking
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     * pattern="/^0[1-79][0-9]{8}$/",
+     * message="Le format saisi n'est pas celui d'un numéro de téléphone"
+     * )
      */
     private $phone;
 

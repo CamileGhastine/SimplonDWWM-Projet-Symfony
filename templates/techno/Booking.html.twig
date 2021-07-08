@@ -15,4 +15,14 @@
 
 	<button type="submit" class="btn btn-lg btn-primary my-3">Register</button>
 	{{ form_end(bookingForm) }}
+
+	{% if bookingForm.vars.errors.count %}
+		<span class="invalid-feedback d-block">
+
+			<span class="d-block">
+				<span class="form-error-icon badge badge-danger text-uppercase">Erreur</span>
+				<span class="form-error-message">{{ bookingForm.vars.errors.0.message }}</span>
+			</span>
+		</span>
+	{% endif %}
 {% endblock %}
