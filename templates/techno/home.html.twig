@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% block body %}
+{% for message in app.flashes('book') %}
+<div class="alert alert-success text-center" role="alert">{{ message }}</div>	
+{% endfor %}
 	<div class="card border-secondary mb-3">
 		<div class="card-body">
 			<h1 class="card-title">Présentation du festival technonite</h1>

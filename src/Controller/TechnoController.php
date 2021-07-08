@@ -37,6 +37,7 @@ class TechnoController extends AbstractController
     public function book(Request $request, BookingHandler $bookingHandler, EntityManagerInterface $em): Response
     {
         if (!$this->getUser()) {
+            $this->addFlash('notConnect', 'Vous devez être enregistré et connecté pour réserver des places de concert.');
             return $this->redirectToRoute('security_login');
         }
 
@@ -53,6 +54,8 @@ class TechnoController extends AbstractController
             $em->persist($booking);
             $em->flush();
 
+            $this->addFlash('book', 'Votre réservation a bien été prise en compte.');
+            
             return $this->render('techno/home.html.twig');
         }
 
