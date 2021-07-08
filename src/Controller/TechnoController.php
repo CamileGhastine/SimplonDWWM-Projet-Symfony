@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Booking;
 use App\Form\BookingType;
+use App\Service\BookingHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,9 +13,12 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TechnoController extends AbstractController
-{
+{   
     /**
+     * home
      * @Route("/", name="techno_home")
+     * 
+     * @return Response
      */
     public function home(): Response
     {
@@ -22,28 +26,29 @@ class TechnoController extends AbstractController
     }
 
     /**
+     * book
      * @Route("/booking", name="techno_booking")
+     * 
+     * @param  mixed $request
+     * @param  mixed $bookingHandler
+     * @param  mixed $em
+     * @return Response
      */
-    public function book(Request $request, EntityManagerInterface $em): Response
+    public function book(Request $request, BookingHandler $bookingHandler, EntityManagerInterface $em): Response
     {
         if (!$this->getUser()) {
             return $this->redirectToRoute('security_login');
         }
 
         $booking = new Booking($this->getUser());
+
         $form = $this->createForm(BookingType::class, $booking);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $data = $form->getData();
-
-            $concert = [];
-            for ($i = 1; $i <= 9; $i++) {
-                $getConcert = 'getConcert' . $i;
-                $concert['Concert ' . $i] = $data->$getConcert();
-            }
-            $booking->setConcert($concert);
+            $bookingHandler->setConcerts($booking);
 
             $em->persist($booking);
             $em->flush();
