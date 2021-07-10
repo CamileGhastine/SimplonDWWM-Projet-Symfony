@@ -21,11 +21,25 @@ class Booking
 
     /**
      * @ORM\Column(type="string", length=255)
+     *      * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 30,
+     *     minMessage = "Le prénom est trop court, ({{ limit }} charactères minimum).",
+     *     maxMessage = "Le prénom est trop long, ({{ limit }} charactères maximum).",
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 30,
+     *     minMessage = "Le nom est trop court, ({{ limit }} charactères minimum).",
+     *     maxMessage = "Le nom est trop long, ({{ limit }} charactères maximum).",
+     * )
      */
     private $lastname;
 
