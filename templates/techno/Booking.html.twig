@@ -11,9 +11,30 @@
 	<h1>Billetterie</h1>
 
 	{{ form_start(bookingForm) }}
+	<div class="row">
+		<div class="col-6">
+			{{ form_row(bookingForm.firstname)}}
+			{{ form_row(bookingForm.lastname)}}
+			{{ form_row(bookingForm.phone)}}
+			<button type="submit" class="btn btn-lg btn-primary my-3">Réserver</button>
 
+		</div>
 
-	<button type="submit" class="btn btn-lg btn-primary my-3">Register</button>
+		<div class="col-6">
+			{% for i in 1..9 %}
+				<div class="row">
+					<div class="col-6 text-end">
+						{{ form_label(attribute(bookingForm, 'concert'~i), 'concert '~i) }}
+					</div>
+
+					<div class="col-2">
+						{{ form_widget(attribute(bookingForm, 'concert'~i)) }}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+
 	{{ form_end(bookingForm) }}
 
 	{% if bookingForm.vars.errors.count %}
@@ -25,4 +46,5 @@
 			</span>
 		</span>
 	{% endif %}
+
 {% endblock %}
