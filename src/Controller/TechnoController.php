@@ -46,8 +46,8 @@ class TechnoController extends AbstractController
         $artists = $artistRepository->findArtistInConcert();
         $artists = $artistHandler->schedule($artists);
 
-        $booking = new Booking($this->getUser());
-
+        $booking = $bookingHandler->instanciate($this->getUser(), $request);
+  
         $form = $this->createForm(BookingType::class, $booking);
 
         $form->handleRequest($request);
