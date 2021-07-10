@@ -21,7 +21,7 @@ class BookingHandler
 
         for ($i = 1; $i <= 9; $i++) {
             $getConcert = 'getConcert' . $i;
-            
+
             $concert['Concert ' . $i] = $booking->$getConcert();
             $numberTicket += $booking->$getConcert();
         }
@@ -32,15 +32,19 @@ class BookingHandler
     }
 
 
+    /**
+     * @param User $user
+     * @param Request $request
+     */
     public function instanciate(User $user, Request $request)
     {
         $booking = new Booking($user);
 
-        if($request->query->count()) {
+        if ($request->query->count()) {
             $concert = 'setConcert' . $request->query->get('concert');
             $booking->$concert(2);
         }
 
-        return $booking ;
+        return $booking;
     }
 }

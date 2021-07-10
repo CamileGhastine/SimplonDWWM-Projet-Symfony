@@ -17,6 +17,13 @@ class ArtistController extends AbstractController
     /**
      * @Route("/artist", name="artist_list")
      * @Route("/artist/category/{id}", name="artist_listByCategory")
+     * 
+     * @param Category|null $category
+     * @param CategoryHandler $categoryHandler
+     * @param ArtistRepository $artistRepository
+     * @param CategoryRepository $categoryRepository
+     * 
+     * @return Response
      */
     public function list(Category $category = null, CategoryHandler $categoryHandler, ArtistRepository $artistRepository, CategoryRepository $categoryRepository): Response
     {
@@ -33,6 +40,10 @@ class ArtistController extends AbstractController
 
     /**
      * @Route("/artist/{id<[0-9]+>}", name="artist_show")
+     *
+     * @param Artist $artist
+     * 
+     * @return Response
      */
     public function show(Artist $artist): Response
     {
@@ -43,6 +54,11 @@ class ArtistController extends AbstractController
 
     /**
      * @Route("/schedule", name="artist_schedule")
+     *
+     * @param ArtistRepository $artistRepository
+     * @param ArtistHandler $artistHandler
+     * 
+     * @return Response
      */
     public function schedule(ArtistRepository $artistRepository, ArtistHandler $artistHandler): Response
     {

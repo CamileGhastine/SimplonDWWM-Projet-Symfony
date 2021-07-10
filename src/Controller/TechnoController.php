@@ -31,9 +31,12 @@ class TechnoController extends AbstractController
      * book
      * @Route("/booking", name="techno_booking")
      * 
-     * @param  mixed $request
-     * @param  mixed $bookingHandler
-     * @param  mixed $em
+     * @param Request $request
+     * @param ArtistRepository $artistRepository
+     * @param ArtistHandler $artistHandler
+     * @param BookingHandler $bookingHandler
+     * @param EntityManagerInterface $em
+     * 
      * @return Response
      */
     public function book(Request $request, ArtistRepository $artistRepository, ArtistHandler $artistHandler, BookingHandler $bookingHandler, EntityManagerInterface $em): Response
@@ -47,7 +50,7 @@ class TechnoController extends AbstractController
         $artists = $artistHandler->schedule($artists);
 
         $booking = $bookingHandler->instanciate($this->getUser(), $request);
-  
+
         $form = $this->createForm(BookingType::class, $booking);
 
         $form->handleRequest($request);

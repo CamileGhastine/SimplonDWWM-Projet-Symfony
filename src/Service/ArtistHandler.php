@@ -5,6 +5,10 @@ namespace App\Service;
 
 class ArtistHandler
 {
+    /**
+     * @param array $artists
+     * 
+     */
     public function schedule(array $artists)
     {
         $concert = [

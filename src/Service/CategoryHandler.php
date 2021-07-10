@@ -5,6 +5,9 @@ namespace App\Service;
 
 class CategoryHandler
 {
+    /**
+     * @param array $categories
+     */
     public function colorize(array $categories)
     {
         $categoryColors = [
@@ -12,7 +15,7 @@ class CategoryHandler
             'Industrielle' => 'secondary',
             'Groovy' => 'success',
             'Deep' => 'info',
-            'Détroit'=> 'warning'
+            'Détroit' => 'warning'
         ];
 
         foreach ($categories as $category) {

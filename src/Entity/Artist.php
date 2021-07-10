@@ -98,7 +98,7 @@ class Artist
 
     /**
      * Get the value of color
-     */ 
+     */
     public function getColor()
     {
         return $this->color;
@@ -108,7 +108,7 @@ class Artist
      * Set the value of color
      *
      * @return  self
-     */ 
+     */
     public function setColor($color)
     {
         $this->color = $color;
@@ -118,7 +118,7 @@ class Artist
 
     /**
      * Get the value of date
-     */ 
+     */
     public function getDate()
     {
         return $this->date;
@@ -128,7 +128,7 @@ class Artist
      * Set the value of date
      *
      * @return  self
-     */ 
+     */
     public function setDate($date)
     {
         $this->date = $date;
@@ -138,7 +138,7 @@ class Artist
 
     /**
      * Get the value of time
-     */ 
+     */
     public function getTime()
     {
         return $this->time;
@@ -148,7 +148,7 @@ class Artist
      * Set the value of time
      *
      * @return  self
-     */ 
+     */
     public function setTime($time)
     {
         $this->time = $time;
