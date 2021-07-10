@@ -16,19 +16,30 @@
 			{{ form_row(bookingForm.firstname)}}
 			{{ form_row(bookingForm.lastname)}}
 			{{ form_row(bookingForm.phone)}}
-			<button type="submit" class="btn btn-lg btn-primary my-3">Réserver</button>
 
+			{% if bookingForm.vars.errors.count %}
+				<span class="invalid-feedback d-block">
+
+					<span class="d-block">
+						<span class="form-error-icon badge badge-danger text-uppercase">Erreur</span>
+						<span class="form-error-message">{{ bookingForm.vars.errors.0.message }}</span>
+					</span>
+				</span>
+			{% endif %}
+			
+			<button type="submit" class="btn btn-lg btn-primary my-3">Réserver</button>
 		</div>
 
-		<div class="col-6">
-			{% for i in 1..9 %}
-				<div class="row">
-					<div class="col-6 text-end">
-						{{ form_label(attribute(bookingForm, 'concert'~i), 'concert '~i) }}
+		<div class="col-6 px-5">
+			{% for artist in artists %}
+
+				<div class="row mb-1">
+					<div class="col-10">
+						{{ form_label(attribute(bookingForm, 'concert'~ (loop.index)), 'Le ' ~ artist.date ~' à '~ artist.time ~ ' : ' ~ artist.name ) }}
 					</div>
 
 					<div class="col-2">
-						{{ form_widget(attribute(bookingForm, 'concert'~i)) }}
+						{{ form_widget(attribute(bookingForm, 'concert'~ (loop.index))) }}
 					</div>
 				</div>
 			{% endfor %}
@@ -36,15 +47,5 @@
 	</div>
 
 	{{ form_end(bookingForm) }}
-
-	{% if bookingForm.vars.errors.count %}
-		<span class="invalid-feedback d-block">
-
-			<span class="d-block">
-				<span class="form-error-icon badge badge-danger text-uppercase">Erreur</span>
-				<span class="form-error-message">{{ bookingForm.vars.errors.0.message }}</span>
-			</span>
-		</span>
-	{% endif %}
 
 {% endblock %}

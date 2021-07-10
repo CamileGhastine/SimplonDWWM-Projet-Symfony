@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Booking;
 use App\Form\BookingType;
+use App\Repository\ArtistRepository;
+use App\Service\ArtistHandler;
 use App\Service\BookingHandler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,12 +36,15 @@ class TechnoController extends AbstractController
      * @param  mixed $em
      * @return Response
      */
-    public function book(Request $request, BookingHandler $bookingHandler, EntityManagerInterface $em): Response
+    public function book(Request $request, ArtistRepository $artistRepository, ArtistHandler $artistHandler, BookingHandler $bookingHandler, EntityManagerInterface $em): Response
     {
         if (!$this->getUser()) {
             $this->addFlash('notConnect', 'Vous devez être enregistré et connecté pour réserver des places de concert.');
             return $this->redirectToRoute('security_login');
         }
+
+        $artists = $artistRepository->findArtistInConcert();
+        $artists = $artistHandler->schedule($artists);
 
         $booking = new Booking($this->getUser());
 
@@ -62,6 +67,7 @@ class TechnoController extends AbstractController
 
         return $this->render('techno/booking.html.twig', [
             'bookingForm' => $form->createView(),
+            'artists' => $artists
         ]);
     }
 }
